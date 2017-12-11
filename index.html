@@ -30,7 +30,7 @@
     <h3>Ajouter une tâche</h3>
 
     <fieldset>
-        <form class="row" @submit.prevent="addTask">
+        <!--<form class="row" @submit.prevent="addTask">
             <div class="input-field col m6 offset-m3">
                 <input id="taskTitle" type="text" v-model="titleTask">
                 <label for="taskTitle">Intitulé de la tâche</label>
@@ -38,7 +38,10 @@
             <div class="col m4 offset-m5">
                 <button type="submit" class="waves-effect waves-light btn">Ajouter</button>
             </div>
-        </form>
+        </form>-->
+
+        <taskform @ajouttask="addTask"></taskform>
+
     </fieldset>
 
 
@@ -46,7 +49,7 @@
 
     <p>Il reste <strong> {{ remaining }} {{ 'tâche' | pluralize(remaining) }} </strong> sur <strong>{{tasks.length}}</strong> à effectuer.</p>
 
-    <ul class="collection">
+    <!--<ul class="collection">
 
         <li class="collection-item" v-for="(task, index) in tasks">
 
@@ -57,7 +60,10 @@
                 <i class="small material-icons" @click="deleteTask(index)">delete_forever</i>
             </a>
         </li>
+    </ul>-->
 
+    <ul class="collection">
+        <task :task="task" :index="index" @evesuppression="deleteTask" v-for="(task, index) in tasks"></task>
     </ul>
 
 </main><!-- Fin de l'app Vue.js -->
