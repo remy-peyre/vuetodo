@@ -30,7 +30,7 @@
     <h3>Ajouter une tâche</h3>
 
     <fieldset>
-        <form class="row" v-on:submit.prevent="addTask">
+        <form class="row" @submit.prevent="addTask">
             <div class="input-field col m6 offset-m3">
                 <input id="taskTitle" type="text" v-model="titleTask">
                 <label for="taskTitle">Intitulé de la tâche</label>
@@ -44,7 +44,7 @@
 
     <h3>Liste des tâches</h3>
 
-    <p>Il reste <strong>1 tâche</strong> sur <strong>2</strong> à effectuer.</p>
+    <p>Il reste <strong> {{ remaining }} {{ 'tâche' | pluralize(remaining) }} </strong> sur <strong>{{tasks.length}}</strong> à effectuer.</p>
 
     <ul class="collection">
 
@@ -54,7 +54,7 @@
 
             <label :for="'t_' + index">{{ task.title }}</label>
             <a href="#" class="link-delete" title="Supprimer cette tâche">
-                <i class="small material-icons" v-on:click="deleteTask(index)">delete_forever</i>
+                <i class="small material-icons" @click="deleteTask(index)">delete_forever</i>
             </a>
         </li>
 

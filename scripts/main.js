@@ -8,7 +8,6 @@
         el : '#app',
 
         data : {
-            newTodoText: '',
             tasks : [
                 {title : "Nourrir le chat", isDone : true},
                 {title : "Nourrir le Damien", isDone : false},
@@ -17,22 +16,33 @@
             ],
             titleTask: ""
         },
+        /*created: {
+            var tasks = JSON.parse(localStorage.getItem('tasks'));
+            this.tasks = tasks;
+        },*/
         methods: {
-            removeElement: function (index) {
+            deleteTask: function (index) {
                 this.tasks.splice(index, 1);
             },
-            addTask: function () {
+            addTask () {
                 if(this.titleTask == "")
                     return;
                 this.tasks.push({title: this.titleTask, isDone: false});
                 this.titleTask = "";
+                //this.$refs.taskForm.reset();
             }
         },
+        computed: {
 
-        deleteTask: function (index) {
-            this.tasks.splice(index,1);
-        }
-
+            remaining(){
+                return this.tasks.filter(task => task.isDone).length;
+            }
+        },
+        filters: {
+            pluralize: function (word, nb){
+                return nb > 1 ? word + "s" : word;
+            }
+        },
     })
 
 }
